@@ -144,9 +144,17 @@ body {
     border: 2px solid white;
 }
 
+/* Update the light theme styles with higher specificity */
+body[data-theme="light"] .btn-secondary,
 [data-theme="light"] .btn-secondary {
     color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+/* Ensure hero section buttons are always visible */
+.hero .btn-secondary {
+    color: white;
+    border-color: white;
 }
 
 .btn:hover {
