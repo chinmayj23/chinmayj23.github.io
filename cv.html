@@ -6,6 +6,23 @@
   <title>CV - Chinmay Joshi</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    .cv-pdf-frame {
+      width: 100%;
+      height: 85vh;
+      min-height: 900px;
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .cv-pdf-frame {
+        height: 70vh;
+        min-height: 420px;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -33,6 +50,32 @@
     </div>
   </header>
 
+  <section class="section">
+    <div class="container">
+      <div class="cv-content">
+        <div class="cv-header">
+          <div class="cv-download">
+            <a id="download-cv" href="./images/cv.pdf" class="btn btn-primary" download="Chinmay_Joshi_CV.pdf">
+              <i class="fas fa-download"></i> Download PDF
+            </a>
+          </div>
+        </div>
+
+        <iframe
+          class="cv-pdf-frame"
+          src="./images/cv.pdf"
+          title="Chinmay Joshi CV"
+          loading="lazy">
+        </iframe>
+
+        <p class="cv-description" style="margin-top: 1rem;">
+          If preview is not supported, <a href="./images/cv.pdf" class="cv-link" target="_blank" rel="noopener">open the CV in a new tab</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legacy HTML CV content retained but hidden.
   <section class="section">
     <div class="container">
       <div class="cv-content">
@@ -279,6 +322,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <script src="js/main.js"></script>
 </body>
