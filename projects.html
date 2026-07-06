@@ -3,9 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Projects - Chinmay Joshi</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Widen the whole tile (overall card, not just the image) */
+        .section .container { max-width: 1500px; }
+
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .projects-grid .project-card {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch !important;   /* both columns share one height */
+            overflow: hidden;
+            padding: 0;
+            /* Floor the card height so the image is a tall rectangle that runs
+               down past the buttons, even when the text is short. Long-text
+               cards simply grow beyond this on their own. */
+            min-height: 400px;
+        }
+        .projects-grid .project-image {
+            flex: 0 0 36%;
+            max-width: 36%;
+            position: relative !important;     /* anchor for the fill image */
+            align-self: stretch !important;    /* match the card's full height */
+            height: auto !important;           /* release style.css's height:200px cap */
+            overflow: hidden;
+        }
+        /* Blurred, zoomed copy of the same image fills the whole panel so
+           there are no white bands. The --thumb URL is set inline per card. */
+        .projects-grid .project-image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--thumb) center / cover no-repeat;
+            filter: blur(22px) brightness(1.04);
+            transform: scale(1.25);   /* push the blurred edges out of view */
+            z-index: 0;
+        }
+        /* The real thumbnail, shown whole (contain) and sharp, on top. */
+        .projects-grid .project-image img {
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 14px !important;          /* breathing room around the figure */
+            box-sizing: border-box !important;
+            object-fit: contain !important;    /* whole image, nothing cropped */
+            object-position: center !important;
+            display: block !important;
+            z-index: 1;
+        }
+        .project-content {
+            flex: 1 1 auto;
+            padding: 1.75rem 2rem;
+        }
+        @media (max-width: 768px) {
+            .projects-grid .project-card {
+                flex-direction: column;
+                min-height: 0;
+            }
+            .projects-grid .project-image {
+                flex-basis: auto;
+                max-width: 100%;
+                height: 260px !important;   /* definite height once stacked */
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -29,7 +102,7 @@
 
     <header class="page-header">
         <div class="container">
-            <h1>Research Projects </h1>
+            <h1>Research Projects</h1>
             <!-- <p>Research Work</p> -->
         </div>
     </header>
@@ -37,49 +110,86 @@
     <section class="section">
         <div class="container">
             <div class="projects-grid">
+
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/ef.png" alt="AI Portfolio Project">
+                    <div class="project-image" style="--thumb:url('images/wlib.png')">
+                        <img src="images/wlib.png" alt="Prune to Protect Project">
                     </div>
                     <div class="project-content">
-                        <h3>AI Portfolio Optimization</h3>
-                        <div class="project-category">Machine Learning & Finance (2021)</div>
-                        <p class="project-description">A deep learning approach using PCA and LSTM for stock trading, combined with Efficient Frontier method for portfolio optimization. Published at IEEE I2CT 2022.</p>
+                        <h3>Prune to Protect</h3>
+                        <div class="project-category">Deep Learning Privacy & Efficiency (2026)</div>
+                        <p class="project-description">My master's thesis, showing that dynamic data pruning does more than speed up training: by exposing hard, high-risk examples earlier, it lowers how much a model memorizes them and reduces membership-inference vulnerability, at no cost to accuracy. Introduces WLIB, which reuses a sample's pruning history to hold that privacy gain in place through late training. Accepted at the ICML 2026 Workshop on Memorization in Foundation Models; under review at NeurIPS 2026.</p>
                         <div class="project-tags">
-                            <span>TensorFlow</span>
-                            <span>LSTM</span>
-                            <span>PCA</span>
-                            <span>Portfolio Optimization</span>
+                            <span>PyTorch</span>
+                            <span>Data Pruning</span>
+                            <span>Memorization</span>
+                            <span>Membership Inference</span>
                         </div>
-                        <a href="https://github.com/chinmayj23/AI_Portfolio" target="_blank" class="btn btn-primary">View Project</a>
+                        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                            <a href="https://drive.google.com/file/d/1TBor9Ywmqk5ft_6o9oeCwr9BbMAa9H2c/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Paper</a>
+                            <a href="https://drive.google.com/file/d/1XnMRV_j-Z7NLzXI8XEsuHhRwC0bw3r_x/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Thesis</a>
+                            <a href="https://drive.google.com/file/d/1aeAbJI1cIlvHCb_yDX_oIzQxALVY5CCI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Poster</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">
+                    <div class="project-image" style="--thumb:url('images/dolphin.png')">
+                        <img src="images/dolphin.png" alt="DOLPHIN discovered subgroup rule and trajectory">
+                    </div>
+                    <div class="project-content">
+                        <h3>DOLPHIN</h3>
+                        <div class="project-category">Subgroup Discovery on Longitudinal Data (2026)</div>
+                        <p class="project-description">An interpretable method for subgroup discovery in longitudinal data: finding groups of entities whose whole trajectory moves differently from the rest, and saying plainly what sets them apart. Unlike standard subgroup discovery, which targets a single value per entity, DOLPHIN scores each entity by how far its trajectory departs from the population baseline, fits a compact random forest to those scores, and reads short Boolean rules from the forest's decision paths, testing each against random subgroups for significance. On World Bank GDP-per-capita and CMIE household-income panels (up to ~9,300 entities and 281,000 observations), the recovered subgroups map to recognizable development and income-composition regimes, each arriving with a human-readable rule and the trajectory that makes it exceptional. Under review at the NFMCP 2026 Workshop (ECML-PKDD).</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Subgroup Discovery</span>
+                            <span>Random Forest</span>
+                            <span>Longitudinal Data</span>
+                        </div>
+                        <a href="https://github.com/chinmayj23/Dolphin" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="--thumb:url('images/nii.jpg')">
                         <img src="images/nii.jpg" alt="Relighting Project">
                     </div>
                     <div class="project-content">
-                        <h3>Relightable Novel View Synthesis (2024)</h3>
-                        <div class="project-category">3D Computer Vision</div>
+                        <h3>Relightable Novel View Synthesis</h3>
+                        <div class="project-category">3D Computer Vision (2024)</div>
                         <p class="project-description">Research on relightable novel view synthesis from single images using Stable Diffusion. Created a synthetic dataset using Objaverse and Polyhaven.</p>
                         <div class="project-tags">
                             <span>PyTorch</span>
                             <span>Stable Diffusion</span>
                             <span>3D Computer Vision</span>
                         </div>
-                        <a href="https://github.com/chinmayj23/relighting_nii" target="_blank" class="btn btn-primary">View Project</a>
+                        <a href="https://github.com/chinmayj23/relighting_nii" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Code</a>
                     </div>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="--thumb:url('images/ef.png')">
+                        <img src="images/ef.png" alt="AI Portfolio Project">
+                    </div>
+                    <div class="project-content">
+                        <h3>AI Portfolio Optimization</h3>
+                        <div class="project-category">Machine Learning & Finance (2022)</div>
+                        <p class="project-description">An end-to-end trading system for the Indian large-caps that answers three questions at once: what to trade, how much, and when. Technical indicators are compressed with PCA to strip out multicollinearity, an LSTM forecasts the trade signals, and an efficient-frontier step sizes each position to maximize the Sharpe ratio at minimum risk. On NIFTY50 the PCA-LSTM beat buy-and-hold by roughly 20%, against about 4% for a plain LSTM. Published at IEEE I2CT 2022.</p>
+                        <div class="project-tags">
+                            <span>TensorFlow</span>
+                            <span>LSTM</span>
+                            <span>PCA</span>
+                            <span>Efficient Frontier</span>
+                        </div>
+                        <a href="https://github.com/chinmayj23/AI_Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Code</a>
+                    </div>
+                </div>
+
             </div>
-            <p class="project-description" style="text-align: center; margin-top: 1.5rem;">
-                <small>Note: This projects page is currently not up to date.</small>
-            </p>
         </div>
     </section>
 
-
     <script src="js/main.js"></script>
 </body>
-</html> 
-</html> 
+</html>
