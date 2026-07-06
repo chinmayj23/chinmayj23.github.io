@@ -953,9 +953,9 @@ footer {
     display: flex;
     align-items: center;
     gap: 4rem;
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2.5rem;
     background: var(--card-bg);
     border-radius: 15px;
     box-shadow: 0 5px 20px var(--shadow-color);
